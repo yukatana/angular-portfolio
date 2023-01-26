@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-5">
+      <h1 class="text-center">Students:</h1>
+    </div>
+    <div class="col-4" *ngFor="let student of studentList">
+      <div class="card my-2">
+        <div class="card-body" [ngClass]="student.isActive ? 'active' : 'inactive'">
+          <h5 class="card-title">
+            {{student.name}} {{student.lastName}}
+          </h5>
+          <p class="card-text">
+            Date of birth: {{student.birthday | date}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
