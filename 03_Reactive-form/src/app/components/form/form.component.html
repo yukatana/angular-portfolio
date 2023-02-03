@@ -3,55 +3,52 @@
     <h2 class="text-center card-header">Please log in:</h2>
     <div class="card-body bg-light">
       <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="row">
+        <div class="row my-5">
           <div class="col-4 my-auto text-end">
             <label for="emailInput" class="form-label">Enter your email: </label>
           </div>
-          <div class="col-4">
+          <div class="col-4 my-auto">
             <input formControlName="email" type="email" id="emailInput" class="form-control">
           </div>
-          <p class="valid text-center">Correct field.</p>
-          <p class="invalid text-center">This field cannot be empty.</p>
-          <p class="invalid text-center">Please, enter a valid email format.</p>
+          <p class="valid text-center" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].valid" >All good!</p>
+          <p class="invalid text-center" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['required']">This field cannot be empty.</p>
+          <p class="invalid text-center" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['pattern']">Please, enter a valid email format.</p>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
           <div class="col-4 my-auto text-end">
             <label for="passwordInput" class="form-label">Enter your password: </label>
           </div>
-          <div class="col-4">
+          <div class="col-4 my-auto">
             <input formControlName="password" type="password" id="passwordInput" class="form-control">
           </div>
-          <div class="col-4">
-            <span class="form-text my-auto">
+          <div class="col-4 my-auto">
+            <span class="form-text">
               Must be at least 8 characters long.
             </span>
           </div>
           <div class="col-4"></div>
-            <p class="valid text-center">Correct field.</p>
-            <p class="invalid text-center">This field cannot be empty.</p>
-            <p class="invalid text-center">Password must be at least 8 characters long.</p>
+            <p class="valid text-center" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].valid">Good to go!</p>
+            <p class="invalid text-center" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['required']">This field cannot be empty.</p>
+            <p class="invalid text-center" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['minlength']">Password must be at least 8 characters long.</p>
+        </div>
 
+        <div class="row mb-5">
+          <div class="col-12 my-auto text-center">
+            <label for="saveCredentialsInput" class="form-check-label">Save credentials? </label>
+            <input formControlName="saveCredentials" type="checkbox" id="saveCredentialsInput" class="form-check-input mx-3">
+          </div>
         </div>
 
         <div class="row">
-          <div class="col-4 my-auto text-end">
-            <label for="saveCredentialsInput" class="form-label">Save credentials? </label>
+          <div class="col-4">
+            <button type="submit" class="w-75 btn btn-primary mx-auto d-block">Login</button>
           </div>
           <div class="col-4">
-            <input formControlName="saveCredentials" type="checkbox" id="saveCredentialsInput" class="form-control">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-4">
-            <button type="submit" class="w-75 btn btn-primary">Login</button>
+            <button type="reset" class="w-75 btn btn-danger mx-auto d-block">Reset</button>
           </div>
           <div class="col-4">
-            <button type="reset" class="w-75 btn btn-danger">Reset</button>
-          </div>
-          <div class="col-4">
-            <button type="button" class="w-75 btn btn-success">Register</button>
+            <button type="button" class="w-75 btn btn-success mx-auto d-block">Register</button>
           </div>
         </div>
 
